@@ -1,27 +1,42 @@
-# InfoSistemas
+<p align="center">
+  <a href="https://www.infosistemas.com.br/" target="blank"><img src="https://www.infosistemas.com.br/wp-content/themes/infosistemas/assets/images/logo.png" width="200" alt="InfoSistemas Logo" /></a>
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.0.
+## Resumo
+Teste prático realizado para vaga de backend-node para empresa InfoSistemas.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Atividade
 
-## Code scaffolding
+1. Criar projeto backend utilizando (Node.Js)
+2. Criar crud de veículos com os seguintes atributos (id, placa, chassi, renavam, modelo, marca, ano). Obs.: Os dados podem ser salvos em arquivos
+3. Criar teste unitários utilizando Mocha (Node) para cada uma das operações (create, read, update, delete)
+4. Criar recursos rest para acesso aos dados dos veículos
+5. Criar projeto front-end utilizando a tecnologia Angular 5+ (Opcional)
+6. Criar lista de veiculos. Obs.: os dados deverão ser recuperados dos recursos rest definidos na aplicação backend (Opcional)
+7. Disponibilizar projeto no github
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Obrigatório
+Necessário ter mongoDB instalado para criação dos documentos automaticamente.
 
-## Build
+## Instalação
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+```bash
+$ npm install ou yarn install
+```
 
-## Running unit tests
+## Executando o app BACKEND
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```bash
+# development
+$ npm run start ou yarn start
 
-## Running end-to-end tests
+# watch mode
+$ npm run start:dev ou yarn start:dev
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## Executando o app FRONTEND
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+# development
+$ npm run start ou yarn start
