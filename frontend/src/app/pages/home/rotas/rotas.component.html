@@ -1,0 +1,114 @@
+<div class="rotas-container">
+	<div class="header">
+		<mat-accordion>
+			<mat-expansion-panel class="no-shadow" [expanded]="!breakPoint">
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						<mat-icon>filter_alt</mat-icon>
+						Filtros
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<form
+					[formGroup]="_form"
+					class="form-grid"
+					(ngSubmit)="getCards()"
+					autocomplete="off"
+				>
+					<mat-form-field class="grid-1">
+						<mat-label> Municipio </mat-label>
+						<input matInput formControlName="dataCriacao" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-1">
+						<mat-label> Estado </mat-label>
+						<mat-select formControlName="rota">
+							<mat-option value="Blumenau"> Blumenau </mat-option>
+							<mat-option value="Sumare"> Hub Sumaré </mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<div class="grid-1 button-group">
+						<button
+							mat-button
+							type="button"
+							color="primary"
+							class="grid-1"
+							(click)="getCardFilter(); _form.reset()"
+						>
+							Limpar filtro
+						</button>
+						<button
+							type="submit"
+							mat-raised-button
+							color="primary"
+							class="grid-1"
+						>
+							Pesquisar
+						</button>
+					</div>
+				</form>
+			</mat-expansion-panel>
+		</mat-accordion>
+	</div>
+	<div class="controls-menu">
+		<button mat-icon-button (click)="openAddRota()">
+			<mat-icon>add_circle</mat-icon>
+		</button>
+		<button mat-icon-button (click)="openAddCarregamento()">
+			<mat-icon>add_shopping_cart</mat-icon>
+		</button>
+	</div>
+	<div
+		#crmContainer
+		class="crm-container mat-typography"
+		cdkDropListGroup
+		[ngStyle]="{ overflow: breakPoint ? 'hidden' : 'auto' }"
+		(swipeLeft)="breakPoint ? scroll(1) : ''"
+		(swipeRight)="breakPoint ? scroll(-1) : ''"
+	>
+		<ng-container *ngFor="let list of leadList; let i = index">
+			<div
+				#columnList
+				[id]="i + 1 + ''"
+				class="crm-column"
+				cdkDropList
+				cdkDropListOrientation="vertical"
+				cdkDropListSortingDisabled
+				[cdkDropListData]="list"
+				(cdkDropListDropped)="drop($event)"
+			>
+				<p class="crm-header">
+					<span class="title">{{ titles[i] }}</span> ({{
+						list.length | number
+					}})
+				</p>
+				<div class="crm-list">
+					<mat-card
+						class="crm-arquiteto"
+						*ngFor="let card of list"
+						cdkDrag
+						[cdkDragData]="card"
+						[cdkDragStartDelay]="breakPoint ? 250 : 0"
+						(cdkDragMoved)="scrollCard($event)"
+						(click)="showDetails(card.IdFase)"
+					>
+						<p class="crm-name">Rota {{ card.Rota }}</p>
+						<div class="crm-data">
+							<p>Data de criação:</p>
+							<p>{{ card.DataCriacao | date: 'dd/MM/yy' }}</p>
+							<p>Motorista:</p>
+							<p>{{ card.Motorista || '-' }}</p>
+							<p>Tipo de pedido:</p>
+							<p>{{ card.TipoPedido || '-' }}</p>
+							<p>Previsão de chegada:</p>
+							<p>{{ card.PrecisaoChegada | date: 'dd/MM/yy' }}</p>
+							<p>Peso:</p>
+							<p>{{ card.Peso || '-' }}</p>
+						</div>
+						<div class="matcard-placeholder" *cdkDragPlaceholder></div>
+					</mat-card>
+				</div>
+			</div>
+		</ng-container>
+	</div>
+</div>

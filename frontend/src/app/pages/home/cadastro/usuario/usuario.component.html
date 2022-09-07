@@ -1,0 +1,202 @@
+<div class="user-container">
+	<!-- <div class="loading" *ngIf="isLoading">
+		<mat-spinner> </mat-spinner>
+		<p>Carregando...</p>
+	</div> -->
+
+	<app-fab-button-menu
+		*ngIf="breakPoint"
+		[options]="FabOptions"
+		(returnFunction)="getFuncFAB($event)"
+	>
+	</app-fab-button-menu>
+
+	<div class="header">
+		<mat-accordion>
+			<mat-expansion-panel class="no-shadow" [expanded]="!breakPoint">
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						<mat-icon>filter_alt</mat-icon>
+						Filtros
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<form
+					[formGroup]="_form"
+					class="form-grid"
+					(ngSubmit)="getUserFilter()"
+					autocomplete="off"
+				>
+					<mat-form-field class="grid-2">
+						<mat-label> Nome </mat-label>
+						<input matInput type="text" formControlName="NomeCompleto" />
+						<mat-icon matSuffix> search </mat-icon>
+					</mat-form-field>
+
+					<div class="grid-1" style="grid-column: 1">
+						<mat-slide-toggle
+							formControlName="inativo"
+							color="primary"
+							(change)="toggleInactive($event)"
+						>
+							Usuários desabilitados
+						</mat-slide-toggle>
+					</div>
+
+					<div class="grid-1 button-group">
+						<button
+							mat-button
+							color="primary"
+							class="grid-1"
+							(click)="getUsers(1); _form.reset()"
+						>
+							Limpar filtro
+						</button>
+						<button
+							type="submit"
+							mat-raised-button
+							color="primary"
+							class="grid-1"
+						>
+							Pesquisar
+						</button>
+					</div>
+				</form>
+			</mat-expansion-panel>
+		</mat-accordion>
+	</div>
+	<div class="table-container">
+		<div class="menu-actions" *ngIf="!breakPoint">
+			<span>
+				<svg
+					id="Camada_1"
+					data-name="Camada 1"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 20 20"
+				>
+					<defs>
+						<style>
+							.cls-1 {
+								fill: #eee;
+							}
+						</style>
+					</defs>
+					<path class="cls-1" d="M0,20H20V0S20,20,0,20Z" />
+				</svg>
+			</span>
+			<button
+				mat-button
+				class="menu-item"
+				color="primary"
+				data-label="Novo cadastro"
+				(click)="registerUser()"
+			>
+				<mat-icon> add_circle </mat-icon>
+			</button>
+		</div>
+		<div class="table">
+			<mat-table matSort matTableResponsive [dataSource]="_dataSource">
+				<ng-container matColumnDef="Notify">
+					<mat-header-cell *matHeaderCellDef> </mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="Modelo">
+						<mat-icon *ngIf="element.status === 'Inativo'">
+							person_off
+						</mat-icon>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="NomeCompleto">
+					<mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="NomeCompleto">
+						<span> {{ element.NomeCompleto }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Cargo">
+					<mat-header-cell *matHeaderCellDef> Cargo </mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="Cargo">
+						<span>{{ element.Cargo }}</span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Telefone">
+					<mat-header-cell *matHeaderCellDef> Telefone </mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="Telefone">
+						<span>{{ element.Telefone }}</span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Email">
+					<mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="Email">
+						<span>{{ element.Email }}</span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="CD">
+					<mat-header-cell *matHeaderCellDef> CD </mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="CD">
+						<span>{{ element.CD }}</span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Controls">
+					<mat-header-cell mat-header-cell *matHeaderCellDef> </mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="" class="controls">
+						<span id="vertical-menu">
+							<mat-icon [matMenuTriggerFor]="optionsMenu"> more_vert </mat-icon>
+							<mat-menu #optionsMenu="matMenu">
+								<button
+									matRipple
+									mat-menu-item
+									(click)="
+										deleteUser(
+											element.NomeCompleto + ' - ' + element.Cargo,
+											element.IdCaminhao
+										)
+									"
+								>
+									<mat-icon> delete </mat-icon>
+									<span> Deletar </span>
+								</button>
+								<button matRipple mat-menu-item (click)="editUser(element)">
+									<mat-icon> edit </mat-icon>
+									<span> Editar </span>
+								</button>
+							</mat-menu>
+						</span>
+						<span id="horizontal-menu">
+							<button mat-icon-button>
+								<mat-icon
+									class="delete"
+									(click)="
+										deleteUser(
+											element.NomeCompleto + ' - ' + element.Cargo,
+											element.IdCaminhao
+										)
+									"
+								>
+									delete
+								</mat-icon>
+							</button>
+							<button mat-icon-button (click)="editUser(element)">
+								<mat-icon class="edit"> edit </mat-icon>
+							</button>
+						</span>
+					</mat-cell>
+				</ng-container>
+
+				<mat-header-row
+					*matHeaderRowDef="displayedColumns; sticky: true"
+				></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+			</mat-table>
+		</div>
+		<app-paginator
+			[currentPage]="currentPage"
+			[pageCount]="pageCount"
+			[isMobile]="breakPoint"
+			(returnPage)="getUsers($event)"
+		>
+		</app-paginator>
+	</div>
+</div>

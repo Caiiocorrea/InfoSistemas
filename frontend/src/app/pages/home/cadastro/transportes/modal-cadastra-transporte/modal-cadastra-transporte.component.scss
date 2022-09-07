@@ -1,0 +1,52 @@
+.modalCadastra-container {
+	max-width: 800px;
+	margin: auto;
+
+	form {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		justify-content: center;
+		flex-wrap: wrap;
+		margin: auto;
+		gap: 0px 10px;
+		max-width: 750px;
+
+		mat-input-form {
+			width: 60%;
+		}
+	}
+	.loading-modal {
+		width: 100%;
+		text-align: center;
+		padding: 20px 0px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+	.controls {
+		display: flex;
+		justify-content: center;
+		max-width: 750px;
+		margin: auto;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	form {
+		display: flex !important;
+		flex-direction: column;
+
+		mat-input-form {
+			width: 100% !important;
+		}
+	}
+
+	button {
+		width: 100%;
+
+		button {
+			width: 100%;
+		}
+	}
+}

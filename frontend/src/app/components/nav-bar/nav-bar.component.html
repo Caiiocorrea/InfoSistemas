@@ -1,0 +1,215 @@
+<mat-sidenav-container class="container">
+	<mat-sidenav
+		#sidebar
+		mode="side"
+		opened
+		[fixedInViewport]="!isMobile"
+		[ngClass]="{ expanded: expanded, expandedMobile: isMobile }"
+		[mode]="isMobile ? 'over' : 'side'"
+	>
+		<div class="nav_color">
+			<mat-action-list>
+				<div class="tp-list">
+					<div class="user-avatar" matRipple *ngIf="isMobile">
+						<img
+							src="https://pbs.twimg.com/media/C0fNRuWXUAAfQ5e.jpg"
+							alt="Imagem de perfil"
+							class="user-avatar__user-photo"
+						/>
+
+						<div class="user-username">
+							<p class="name">{{ userName }}</p>
+							<p class="job">{{ jobName }}</p>
+						</div>
+					</div>
+					<ng-container *ngIf="!others">
+						<mat-list-item class="navbar-side-menu">
+							<a routerLink="/home" style="outline: none !important">
+								<mat-icon class="white-icon" (click)="blurActiveItem()"
+									>home</mat-icon
+								>
+							</a>
+							<div class="side-menu" routerLink="/home">
+								<p class="side-menu-title">
+									<a (click)="blurActiveItem()">Home</a>
+								</p>
+							</div>
+						</mat-list-item>
+
+						<mat-list-item
+							class="navbar-side-menu"
+							[ngClass]="clienteClass"
+							tabindex="0"
+							id="expandable-itens"
+						>
+							<mat-icon class="white-icon">local_shipping_outline</mat-icon>
+							<div class="side-menu" tabindex="0">
+								<p class="side-menu-title" tabindex="0">
+									Cadastro
+									<span>
+										<mat-icon> arrow_drop_down </mat-icon>
+									</span>
+								</p>
+								<div class="side-menu-links" #cadastroItens>
+									<a
+										routerLink="/home/cadastro/transportes"
+										tabindex="0"
+										(click)="blurActiveItem(); isMobile ? toggleMode() : ''"
+									>
+										Veículos
+									</a>
+									<a
+										routerLink="/home/cadastro/motorista"
+										tabindex="0"
+										(click)="blurActiveItem(); isMobile ? toggleMode() : ''"
+									>
+										Motoristas
+									</a>
+									<a
+										routerLink="/home/cadastro/usuario"
+										tabindex="0"
+										(click)="blurActiveItem(); isMobile ? toggleMode() : ''"
+									>
+										Usuários
+									</a>
+								</div>
+							</div>
+						</mat-list-item>
+						<mat-list-item
+							class="navbar-side-menu"
+							[ngClass]="clienteClass"
+							tabindex="0"
+							id="expandable-entrada"
+						>
+							<mat-icon class="white-icon">archive</mat-icon>
+							<div class="side-menu" tabindex="0">
+								<p class="side-menu-title" tabindex="0">
+									Entrada
+									<span>
+										<mat-icon> arrow_drop_down </mat-icon>
+									</span>
+								</p>
+								<div class="side-menu-links" #entradaItens>
+									<a
+										routerLink="/home/documentos/documentos-entrada"
+										tabindex="0"
+										(click)="blurActiveItem(); isMobile ? toggleMode() : ''"
+									>
+										Documentos
+									</a>
+									<a
+										routerLink="/home/documentos/documentos-relatorios"
+										tabindex="0"
+										(click)="blurActiveItem(); isMobile ? toggleMode() : ''"
+									>
+										Relatórios
+									</a>
+								</div>
+							</div>
+						</mat-list-item>
+						<mat-list-item
+							class="navbar-side-menu"
+							[ngClass]="clienteClass"
+							tabindex="0"
+							id="expandable-saida"
+						>
+							<mat-icon class="white-icon">unarchive</mat-icon>
+							<div class="side-menu" tabindex="0">
+								<p class="side-menu-title" tabindex="0">
+									Saída
+									<span>
+										<mat-icon> arrow_drop_down </mat-icon>
+									</span>
+								</p>
+								<div class="side-menu-links" #saidaItens>
+									<a
+										routerLink="/home/documentos/documentos-saida"
+										tabindex="0"
+										(click)="blurActiveItem(); isMobile ? toggleMode() : ''"
+									>
+										Documentos
+									</a>
+								</div>
+							</div>
+						</mat-list-item>
+						<mat-list-item class="navbar-side-menu">
+							<a routerLink="/home/estoque">
+								<mat-icon class="white-icon" (click)="blurActiveItem()"
+									>inventory_2</mat-icon
+								>
+							</a>
+							<div class="side-menu" routerLink="/home/estoque">
+								<p class="side-menu-title">
+									<a (click)="blurActiveItem()">Estoque</a>
+								</p>
+							</div>
+						</mat-list-item>
+						<mat-list-item class="navbar-side-menu">
+							<a routerLink="/home/rotas">
+								<mat-icon class="white-icon" (click)="blurActiveItem()"
+									>traffic</mat-icon
+								>
+							</a>
+							<div class="side-menu" routerLink="/home/rotas">
+								<p class="side-menu-title">
+									<a (click)="blurActiveItem()">Rotas</a>
+								</p>
+							</div>
+						</mat-list-item>
+					</ng-container>
+					<!-- <mat-list-item class="navbar-side-menu">
+                    <a (click)="blurActiveItem(); changeNav()">
+                        <mat-icon class="white-icon">more_horiz</mat-icon>
+                    </a>
+                    <div class="side-menu" (click)="changeNav()">
+                        <p class="side-menu-title">
+                            <a (click)="blurActiveItem()">
+                                {{ others ? 'Principais' : 'Outros itens ' }}
+                            </a>
+                        </p>
+                    </div>
+                </mat-list-item> -->
+				</div>
+
+				<div class="bt-list">
+					<mat-list-item class="navbar-side-menu">
+						<a routerLink="/">
+							<mat-icon class="white-icon">exit_to_app</mat-icon>
+						</a>
+						<div class="side-menu">
+							<p class="side-menu-title">
+								<a routerLink="/">Sair</a>
+							</p>
+						</div>
+					</mat-list-item>
+				</div>
+			</mat-action-list>
+		</div>
+	</mat-sidenav>
+	<mat-sidenav-content
+		[ngClass]="{ expanded: expanded, expandedMobile: isMobile }"
+	>
+		<div class="content">
+			<div class="toolbar">
+				<mat-toolbar>
+					<mat-icon (click)="isMobile ? toggleMode() : toggleExpanded()"
+						>menu</mat-icon
+					>
+					<h3>{{ title }}</h3>
+					<div class="box">
+						<!-- <mat-icon>search</mat-icon>
+                        <mat-icon>bookmark_border</mat-icon>
+                        <mat-icon>mail_outline</mat-icon> -->
+						<app-user-avatar
+							style="height: 40px"
+							*ngIf="!isMobile"
+						></app-user-avatar>
+					</div>
+				</mat-toolbar>
+			</div>
+			<div class="main">
+				<router-outlet></router-outlet>
+			</div>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>

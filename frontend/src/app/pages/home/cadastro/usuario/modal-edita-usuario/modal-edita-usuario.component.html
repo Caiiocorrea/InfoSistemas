@@ -1,0 +1,225 @@
+<div class="modalEdita-container">
+	<div class="close-button" title="Fechar" mat-dialog-close>
+		<mat-icon>close</mat-icon>
+	</div>
+	<div class="container-controls">
+		<div class="side-nav">
+			<button
+				mat-button
+				(click)="toggleForm(1)"
+				[ngClass]="{ active: activeForm === 1 }"
+			>
+				Dados do usuário
+			</button>
+			<button
+				mat-button
+				(click)="toggleForm(2)"
+				[ngClass]="{ active: activeForm === 2 }"
+			>
+				Dados de acesso
+			</button>
+			<button
+				mat-button
+				(click)="toggleForm(3)"
+				[ngClass]="{ active: activeForm === 3 }"
+			>
+				Dados de contrato
+			</button>
+			<button
+				mat-button
+				(click)="toggleForm(4)"
+				class="inactive-alert"
+				[ngClass]="{ active: activeForm === 4 }"
+				*ngIf="dialogData.status === 'Inativo'"
+			>
+				Veículo inativo
+				<mat-icon> warning </mat-icon>
+			</button>
+		</div>
+		<div class="form-container">
+			<ng-container [ngSwitch]="activeForm">
+				<form
+					class="form-grid"
+					[formGroup]="_formGroupUser"
+					[@changeAnim]="activeForm === 1 ? 'open' : 'close'"
+					*ngSwitchCase="1"
+				>
+					<mat-form-field class="grid-3">
+						<mat-label> Nome completo </mat-label>
+						<input
+							matInput
+							type="text"
+							formControlName="NomeCompleto"
+							required
+						/>
+						<mat-error *ngIf="!_formGroupUser.hasError('required')">
+							Informe o nome do usuário.
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> CPF </mat-label>
+						<input
+							matInput
+							type="text"
+							formControlName="CPF"
+							required
+							mask="000.000.000-00||00.000.000/0000-00"
+						/>
+						<mat-error *ngIf="!_formGroupUser.hasError('required')">
+							Informe o CPF do usuário.
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Telefone / Celular </mat-label>
+						<input
+							matInput
+							type="text"
+							formControlName="Telefone"
+							required
+							mask="(00) 0000-0000||(00) 0 0000-0000"
+						/>
+						<mat-error *ngIf="!_formGroupUser.hasError('required')">
+							Informe o celular do usuário.
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<input matInput type="text" formControlName="Email" required />
+						<mat-error *ngIf="!_formGroupUser.hasError('required')">
+							Informe o E-mail do usuário.
+						</mat-error>
+					</mat-form-field>
+				</form>
+
+				<form
+					class="form-grid"
+					[formGroup]="_FormGroupAccess"
+					[@changeAnim]="activeForm === 2 ? 'open' : 'close'"
+					*ngSwitchCase="2"
+				>
+					<mat-form-field class="grid-6">
+						<mat-label> Email </mat-label>
+						<input matInput type="email" formControlName="Email" required />
+						<mat-error *ngIf="!_FormGroupAccess.hasError('required')">
+							Informe o email para acesso.
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Senha </mat-label>
+						<input
+							matInput
+							type="password"
+							formControlName="Senha"
+							required
+							(change)="checkPassword()"
+						/>
+						<mat-error *ngIf="!_FormGroupAccess.hasError('required')">
+							Informe a senha para acesso.
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Confirme a senha </mat-label>
+						<input
+							matInput
+							type="password"
+							formControlName="ConfSenha"
+							required
+							(change)="checkPassword()"
+						/>
+						<mat-error *ngIf="!_FormGroupAccess.hasError('required')">
+							Repita a senha.
+						</mat-error>
+					</mat-form-field>
+					<div
+						class="checkEqual grid-6"
+						[ngClass]="
+							checkPassword() && _FormGroupAccess.controls['ConfSenha'].dirty
+								? 'confirm'
+								: ' error'
+						"
+					>
+						<p
+							*ngIf="
+								_FormGroupAccess.controls['ConfSenha'].dirty && !checkPassword()
+							"
+						>
+							As senhas não coíncidem
+						</p>
+						<p
+							*ngIf="
+								_FormGroupAccess.controls['ConfSenha'].dirty && checkPassword()
+							"
+						>
+							Senhas confirmadas
+						</p>
+					</div>
+				</form>
+
+				<form
+					class="form-grid"
+					[formGroup]="_FormGroupContract"
+					[@changeAnim]="activeForm === 3 ? 'open' : 'close'"
+					*ngSwitchCase="3"
+				>
+					<mat-form-field class="grid-3">
+						<mat-label> Cargo </mat-label>
+						<mat-select formControlName="Cargo" required>
+							<mat-option
+								*ngFor="let jobname of jobListNames"
+								[value]="jobname"
+							>
+								{{ jobname }}
+							</mat-option>
+						</mat-select>
+						<mat-error *ngIf="!_FormGroupContract.hasError('required')">
+							Informe o cargo do usuário
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> CD </mat-label>
+						<mat-select formControlName="CD" required>
+							<mat-option *ngFor="let cdname of CDListaNames" [value]="cdname">
+								{{ cdname }}
+							</mat-option>
+						</mat-select>
+						<mat-error *ngIf="!_FormGroupContract.hasError('required')">
+							Informe o CD do usuário
+						</mat-error>
+					</mat-form-field>
+				</form>
+
+				<div
+					class="form-grid"
+					[@changeAnim]="activeForm === 3 ? 'open' : 'close'"
+					*ngSwitchCase="4"
+				>
+					<div class="grid-6">
+						<h1>Deseja reativar este usuario?</h1>
+					</div>
+				</div>
+			</ng-container>
+			<ng-container *ngIf="activeForm < 4">
+				<div class="button-group">
+					<button mat-button (click)="deleteUser()">Excluir cadastro</button>
+					<button mat-raised-button color="primary" (click)="saveEdit()">
+						Salvar alterações
+					</button>
+				</div>
+			</ng-container>
+
+			<ng-container *ngIf="activeForm === 4">
+				<div class="button-group">
+					<button mat-button (click)="toggleForm(1)">Cancelar</button>
+					<button color="primary" mat-raised-button (click)="deleteUser(1)">
+						Sim, quero reativar.
+					</button>
+				</div>
+			</ng-container>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,184 @@
+<div class="estoque-container">
+	<div class="header">
+		<mat-accordion>
+			<mat-expansion-panel class="no-shadow" [expanded]="!breakPoint">
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						<mat-icon>filter_alt</mat-icon>
+						Filtros
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<form [formGroup]="_form" class="form-grid" autocomplete="off">
+					<mat-form-field class="grid-1">
+						<mat-label> SKU </mat-label>
+						<input matInput formControlName="SKU" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-1">
+						<mat-label> Nome do produto </mat-label>
+						<input matInput formControlName="nomeProduto" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-1">
+						<mat-label> End. armazenamento </mat-label>
+						<input matInput formControlName="endereco" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-1">
+						<mat-label> CD </mat-label>
+						<mat-select formControlName="CD">
+							<mat-option value="Blumenau"> Blumenau </mat-option>
+							<mat-option value="Hub Sumare"> HUB Sumaré </mat-option>
+						</mat-select>
+					</mat-form-field>
+
+					<div class="grid-1 button-group">
+						<button mat-button type="button" color="primary" class="grid-1">
+							Limpar filtro
+						</button>
+						<button
+							type="submit"
+							mat-raised-button
+							color="primary"
+							class="grid-1"
+						>
+							Pesquisar
+						</button>
+					</div>
+				</form>
+			</mat-expansion-panel>
+		</mat-accordion>
+	</div>
+	<div class="table-container">
+		<div class="table">
+			<mat-table matSort matTableResponsive [dataSource]="_dataSource">
+				<ng-container matColumnDef="SKU">
+					<mat-header-cell *matHeaderCellDef>
+						<span> SKU </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="SKU">
+						<span> {{ element.SKU }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Nome">
+					<mat-header-cell *matHeaderCellDef>
+						<span> Nome </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element">
+						<span> {{ element.Nome }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Endereco">
+					<mat-header-cell *matHeaderCellDef>
+						<span> Endereco </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="Endereco">
+						<span>
+							{{ element.Endereco[0]?.Nome || 'Não encontrado' }}
+							<mat-icon
+								[matMenuTriggerFor]="menuEndereco"
+								*ngIf="element.Endereco.length"
+							>
+								arrow_drop_down
+							</mat-icon>
+						</span>
+						<mat-menu #menuEndereco="matMenu">
+							<button
+								mat-menu-item
+								matRipple
+								class="stock-menu"
+								*ngFor="let local of element.Endereco"
+							>
+								<mat-icon (click)="openMapa(local)"> inventory_2 </mat-icon>
+								<span> {{ local.Nome }} - {{ local.Endereco }} </span>
+							</button>
+						</mat-menu>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="QtdReal">
+					<mat-header-cell *matHeaderCellDef>
+						<span> Qtd. Real </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="QtdReal">
+						<span> {{ element.QtdReal }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="QtdDisponivel">
+					<mat-header-cell *matHeaderCellDef>
+						<span> Qtd. Disponível </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="QtdDisponivel">
+						<span> {{ element.QtdDisponivel }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="ValorCusto">
+					<mat-header-cell *matHeaderCellDef>
+						<span> Vl. custo </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="ValorCusto">
+						<span> {{ element.ValorCusto | currency }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="ValorCaixa">
+					<mat-header-cell *matHeaderCellDef>
+						<span> Vl. Caixa </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="ValorCaixa">
+						<span> {{ element.ValorCaixa | currency }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="CD">
+					<mat-header-cell *matHeaderCellDef>
+						<span> CD </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="CD">
+						<span> {{ element.CD }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Controls">
+					<mat-header-cell mat-header-cell *matHeaderCellDef> </mat-header-cell>
+					<mat-cell *matCellDef="let element" class="controls">
+						<span id="vertical-menu">
+							<mat-icon [matMenuTriggerFor]="optionsMenu"> more_vert </mat-icon>
+							<mat-menu #optionsMenu="matMenu">
+								<button
+									matRipple
+									mat-menu-item
+									(click)="getOrders(element.SKU)"
+								>
+									<mat-icon> list_alt </mat-icon>
+									<span> Pedidos </span>
+								</button>
+							</mat-menu>
+						</span>
+						<span id="horizontal-menu">
+							<button mat-icon-button (click)="getOrders(element.SKU)">
+								<mat-icon class="delete"> list_alt </mat-icon>
+							</button>
+						</span>
+					</mat-cell>
+				</ng-container>
+
+				<mat-header-row
+					*matHeaderRowDef="displayedColumns; sticky: true"
+				></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+			</mat-table>
+		</div>
+	</div>
+	<app-paginator
+		[currentPage]="currentPage"
+		[pageCount]="pageCount"
+		[isMobile]="breakPoint"
+		(returnPage)="getItens($event)"
+	>
+	</app-paginator>
+</div>

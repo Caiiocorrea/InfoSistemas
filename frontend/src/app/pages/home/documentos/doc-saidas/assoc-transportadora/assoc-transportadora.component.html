@@ -1,0 +1,35 @@
+<div class="modalShippingCompany-container">
+	<div class="header-dialog">
+		<p>Associar transportadora</p>
+		<div class="close-button" title="Fechar" mat-dialog-close>
+			<mat-icon>close</mat-icon>
+		</div>
+	</div>
+
+	<div class="container">
+		<p>Defina uma transportadora para associar às Notas Ficais selecionadas:</p>
+		<mat-form-field>
+			<mat-label> Selecione uma transportadora </mat-label>
+			<mat-select [(ngModel)]="selected">
+				<mat-option value=""> Nenhum </mat-option>
+				<mat-option value="transportadora 1"> Transportadora 1 </mat-option>
+				<mat-option value="transportadora 2"> Transportadora 2 </mat-option>
+				<mat-option value="transportadora 3"> Transportadora 3 </mat-option>
+			</mat-select>
+		</mat-form-field>
+
+		<div class="controls">
+			<button mat-button type="button" color="primary" matDialogClose>
+				cancelar
+			</button>
+			<button
+				mat-raised-button
+				type="button"
+				color="primary"
+				[disabled]="selected === ''"
+			>
+				Confirmar
+			</button>
+		</div>
+	</div>
+</div>

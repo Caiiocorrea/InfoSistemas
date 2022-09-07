@@ -1,0 +1,50 @@
+<div class="container-cadastraNF">
+	<div class="header-dialog">
+		<p>Carregamento</p>
+		<div class="close-button" title="Fechar" mat-dialog-close>
+			<mat-icon>close</mat-icon>
+		</div>
+	</div>
+	<div class="form-container">
+		<p>Escreva abaixo a rota que você deseja iniciar/receber carregamento:</p>
+
+		<mat-form-field>
+			<mat-label> Rota </mat-label>
+			<mat-chip-list #chipRotaList>
+				<mat-chip
+					*ngFor="let dealer of dealers"
+					(removed)="removeRouteList(dealer)"
+				>
+					{{ dealer.NomeFornecedor }}
+					<button matChipRemove>
+						<mat-icon>cancel</mat-icon>
+					</button>
+				</mat-chip>
+				<input
+					#dealersInput
+					placeholder="Adicione uma rota"
+					[matAutocomplete]="auto"
+					[matChipInputFor]="chipRotaList"
+					[matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+					(matChipInputTokenEnd)="add($event)"
+					(input)="getRoutes($event)"
+				/>
+			</mat-chip-list>
+			<mat-autocomplete
+				#auto="matAutocomplete"
+				(optionSelected)="addRouteList($event)"
+			>
+				<mat-option *ngFor="let dealer of sugestDealers" [value]="dealer">
+					{{ dealer.NomeFornecedor }}
+				</mat-option>
+			</mat-autocomplete>
+		</mat-form-field>
+
+		<div class="controls">
+			<button mat-button color="primary">Cancelar</button>
+			<button mat-raised-button color="primary" [disabled]="!dealers.length">
+				Cadastrar
+			</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<div class="mapa-container">
+	<div class="close-button" title="Fechar" mat-dialog-close>
+		<mat-icon>close</mat-icon>
+	</div>
+	<div class="grid-container">
+		<div class="levels">
+			<div
+				class="level"
+				*ngFor="let level of [].constructor(6); let i = index"
+				[ngClass]="getLevel(endereco.andar) === i + 1 ? 'here' : 'empty'"
+			></div>
+		</div>
+		<div class="level-num">
+			<div
+				class="level-indicator"
+				[ngStyle]="{ 'grid-row': getLevel(endereco.andar) }"
+			>
+				<div class="arrow">
+					<p>
+						{{ 'seu produto esta localizado no ' + endereco.andar + '° andar' }}
+					</p>
+				</div>
+				<span class="arrow-point"> </span>
+			</div>
+		</div>
+		<div class="road">
+			<div class="road-indicator">
+				<p>Corredor {{ endereco.rua }}</p>
+			</div>
+		</div>
+	</div>
+</div>

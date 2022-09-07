@@ -1,0 +1,258 @@
+<div class="transportes-container">
+	<div class="loading" *ngIf="isLoading">
+		<mat-spinner> </mat-spinner>
+		<p>Carregando...</p>
+	</div>
+
+	<app-fab-button-menu
+		*ngIf="breakPoint"
+		[options]="FabOptions"
+		(returnFunction)="getFuncFAB($event)"
+	>
+	</app-fab-button-menu>
+
+	<div class="header">
+		<mat-accordion>
+			<mat-expansion-panel class="no-shadow" [expanded]="!breakPoint">
+				<mat-expansion-panel-header>
+					<mat-panel-title>
+						<mat-icon>filter_alt</mat-icon>
+						Filtros
+					</mat-panel-title>
+				</mat-expansion-panel-header>
+				<form
+					[formGroup]="_form"
+					class="form-grid"
+					(ngSubmit)="getFilter()"
+					autocomplete="off"
+				>
+					<mat-form-field class="grid-2">
+						<mat-label> Modelo </mat-label>
+						<input matInput type="text" formControlName="modelo" />
+						<mat-icon matSuffix> search </mat-icon>
+					</mat-form-field>
+
+					<mat-form-field class="grid-1">
+						<mat-label> Placa </mat-label>
+						<input matInput type="text" formControlName="placa" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-1">
+						<mat-label> Tipo do veículo </mat-label>
+						<mat-select formControlName="tipoVeiculo">
+							<mat-option> Nenhum </mat-option>
+							<mat-optgroup *ngFor="let name of vehicleNames" [label]="name">
+								<mat-option
+									*ngFor="let vehicle of vehicles[name]"
+									[value]="vehicle"
+								>
+									{{ vehicle }}
+								</mat-option>
+							</mat-optgroup>
+						</mat-select>
+					</mat-form-field>
+					<!-- 
+					<mat-form-field class="grid-1">
+						<mat-label> Tipo caminhão </mat-label>
+						<input matInput type="text" formControlName="modeloCaminhao" />
+					</mat-form-field> -->
+
+					<mat-form-field class="grid-1">
+						<mat-label> Carroceria </mat-label>
+						<mat-select formControlName="carroceria">
+							<mat-option> Nenhum </mat-option>
+							<mat-optgroup
+								*ngFor="let name of transportBodyNames"
+								[label]="name"
+							>
+								<mat-option
+									*ngFor="let transportBody of transportBodyes[name]"
+									[value]="transportBody"
+								>
+									{{ transportBody }}
+								</mat-option>
+							</mat-optgroup>
+						</mat-select>
+					</mat-form-field>
+
+					<mat-form-field class="grid-1">
+						<mat-label> Renavam</mat-label>
+						<input matInput type="text" formControlName="renavam" />
+					</mat-form-field>
+
+					<div class="grid-1">
+						<mat-slide-toggle
+							formControlName="inativo"
+							color="primary"
+							(change)="toggleInactive($event)"
+						>
+							Veículos desabilitados
+						</mat-slide-toggle>
+					</div>
+
+					<div class="grid-1 button-group">
+						<button
+							mat-button
+							color="primary"
+							class="grid-1"
+							(click)="getVehicles(); _form.reset()"
+						>
+							Limpar filtro
+						</button>
+						<button
+							type="submit"
+							mat-raised-button
+							color="primary"
+							class="grid-1"
+						>
+							Pesquisar
+						</button>
+					</div>
+				</form>
+			</mat-expansion-panel>
+		</mat-accordion>
+	</div>
+	<div class="table-container">
+		<div class="menu-actions" *ngIf="!breakPoint">
+			<span>
+				<svg
+					id="Camada_1"
+					data-name="Camada 1"
+					xmlns="http://www.w3.org/2000/svg"
+					viewBox="0 0 20 20"
+				>
+					<defs>
+						<style>
+							.cls-1 {
+								fill: #eee;
+							}
+						</style>
+					</defs>
+					<path class="cls-1" d="M0,20H20V0S20,20,0,20Z" />
+				</svg>
+			</span>
+			<button
+				mat-button
+				class="menu-item"
+				color="primary"
+				data-label="Novo cadastro"
+				(click)="register()"
+			>
+				<mat-icon> add_circle </mat-icon>
+			</button>
+		</div>
+		<div class="table">
+			<mat-table matSort matTableResponsive [dataSource]="_dataSource">
+				<ng-container matColumnDef="Notify">
+					<mat-header-cell *matHeaderCellDef> </mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="Modelo">
+						<mat-icon *ngIf="element.status === 'Inativo'">
+							person_off
+						</mat-icon>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Modelo">
+					<mat-header-cell *matHeaderCellDef>
+						<span> Modelo </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="Modelo">
+						<span> {{ element.ModeloCaminhao }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Placa">
+					<mat-header-cell mat-header-cell mat-sort-header *matHeaderCellDef>
+						<span> Placa </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="Placa">
+						<span> {{ element.Placa }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="TipoVeiculo">
+					<mat-header-cell mat-header-cell mat-sort-header *matHeaderCellDef>
+						<span> TipoVeiculo </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="TipoVeiculo">
+						<span> {{ element.TipoCaminhao }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Carroceria">
+					<mat-header-cell mat-header-cell *matHeaderCellDef>
+						<span> Carroceria </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="Carroceria">
+						<span> {{ element.Carroceria }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Renavam">
+					<mat-header-cell mat-header-cell *matHeaderCellDef>
+						<span> Renavam </span>
+					</mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="Renavam">
+						<span> {{ element.Renavam }} </span>
+					</mat-cell>
+				</ng-container>
+
+				<ng-container matColumnDef="Controls">
+					<mat-header-cell mat-header-cell *matHeaderCellDef> </mat-header-cell>
+					<mat-cell *matCellDef="let element" data-label="" class="controls">
+						<span id="vertical-menu">
+							<mat-icon [matMenuTriggerFor]="optionsMenu"> more_vert </mat-icon>
+							<mat-menu #optionsMenu="matMenu">
+								<button
+									matRipple
+									mat-menu-item
+									classe="delete"
+									(click)="deleteVehicle(element.Placa, element.IdCaminhao)"
+								>
+									<mat-icon> delete </mat-icon>
+									<span> Deletar </span>
+								</button>
+								<button
+									classe="edit"
+									matRipple
+									mat-menu-item
+									(click)="edit(element)"
+								>
+									<mat-icon> edit </mat-icon>
+									<span> Editar </span>
+								</button>
+							</mat-menu>
+						</span>
+						<span id="horizontal-menu">
+							<button
+								mat-icon-button
+								class="delete"
+								(click)="deleteVehicle(element.Placa, element.IdCaminhao)"
+							>
+								<mat-icon class="delete"> delete </mat-icon>
+							</button>
+							<button mat-icon-button class="delete" (click)="edit(element)">
+								<mat-icon class="edit"> edit </mat-icon>
+							</button>
+						</span>
+					</mat-cell>
+				</ng-container>
+
+				<mat-header-row
+					*matHeaderRowDef="displayedColumns; sticky: true"
+				></mat-header-row>
+				<mat-row *matRowDef="let row; columns: displayedColumns"> </mat-row>
+			</mat-table>
+		</div>
+		<p *ngIf="!breakPoint">
+			Total de registros: <b> {{ totalRegisters }} </b>
+		</p>
+		<app-paginator
+			[currentPage]="currentPage"
+			[pageCount]="pageCount"
+			[isMobile]="breakPoint"
+			(returnPage)="getVehicles($event)"
+		>
+		</app-paginator>
+	</div>
+</div>

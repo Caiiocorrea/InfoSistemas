@@ -1,0 +1,39 @@
+.relEntrada-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	height: 100vh;
+	z-index: 9999;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 5px;
+
+	h1 {
+		font-size: 25px;
+		font-weight: bold;
+		color: #a2a2a2;
+	}
+
+	mat-icon {
+		animation: engine 2s ease-in-out infinite;
+		color: #a2a2a2;
+	}
+}
+
+@keyframes engine {
+	0% {
+		transform: rotate(0deg) scale(1);
+	}
+	50% {
+		transform: rotate(180deg) scale(1.5);
+		color: #912571;
+	}
+	100% {
+		transform: rotate(360deg) scale(1);
+	}
+}

@@ -1,0 +1,391 @@
+<div class="modalEdita-container">
+	<div class="close-button" title="Fechar" mat-dialog-close>
+		<mat-icon>close</mat-icon>
+	</div>
+	<div class="container-controls">
+		<div class="side-nav">
+			<button
+				mat-button
+				(click)="toggleForm(1)"
+				[ngClass]="{ active: activeForm === 1 }"
+			>
+				Dados da NF
+			</button>
+			<button
+				mat-button
+				(click)="toggleForm(2)"
+				[ngClass]="{ active: activeForm === 2 }"
+			>
+				Destinatário
+			</button>
+			<button
+				mat-button
+				(click)="toggleForm(3)"
+				[ngClass]="{ active: activeForm === 3 }"
+			>
+				Transportadora
+			</button>
+			<button
+				mat-button
+				(click)="toggleForm(4)"
+				[ngClass]="{ active: activeForm === 4 }"
+			>
+				Auditoria
+			</button>
+			<button
+				mat-button
+				(click)="toggleForm(5)"
+				class="inactive-alert"
+				[ngClass]="{ active: activeForm === 5 }"
+				*ngIf="dialogData.status === 'Inativo'"
+			>
+				Veículo inativo
+				<mat-icon> warning </mat-icon>
+			</button>
+		</div>
+		<div class="form-container">
+			<ng-container [ngSwitch]="activeForm">
+				<div
+					class="form-grid"
+					[@changeAnim]="activeForm === 1 ? 'open' : 'close'"
+					*ngSwitchCase="1"
+				>
+					<mat-form-field class="grid-2">
+						<mat-label> N° NF Cliente </mat-label>
+						<input matInput type="text" readonly disabled value="123456" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> SR </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Data de emissão </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> N° pedido do cliente </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Código IBGE </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> CNPJ emissor NF </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Razão Social emissor NF </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Ponto de referência </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<span class="grid-divider"> </span>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Valor NF </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-4">
+						<mat-label> Data atualização NF EDI automático </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-6">
+						<mat-label> Chave NF </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Tipo de serviço Correios </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Nome cliente etiqueta </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<span class="grid-divider"> </span>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Nome logo etiqueta </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Código vendedor </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Nome vendedor </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Código serviço frete</mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Nome serviço frete</mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> N° objeto ECT </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Código Carga </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+				</div>
+
+				<div
+					class="form-grid"
+					[@changeAnim]="activeForm === 2 ? 'open' : 'close'"
+					*ngSwitchCase="2"
+				>
+					<mat-form-field class="grid-3">
+						<mat-label> CNPJ / CPF Destinatário</mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Razão social destinatário </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Telefone </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> CEP </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<span class="grid-divider"> </span>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Logradouro </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> N° </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-4">
+						<mat-label> Complemento </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-4">
+						<mat-label> Bairro </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-4">
+						<mat-label> Município </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> UF </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+				</div>
+
+				<div
+					class="form-grid"
+					[@changeAnim]="activeForm === 3 ? 'open' : 'close'"
+					*ngSwitchCase="3"
+				>
+					<mat-form-field class="grid-2">
+						<mat-label> N° sequência </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> CNPJ </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-5">
+						<mat-label> Nome fantasia </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-5">
+						<mat-label> Razão social </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> UF </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Valor combinado </mat-label>
+						<input matInput type="text" readonly value="" />
+					</mat-form-field>
+				</div>
+
+				<div
+					class="form-grid"
+					[@changeAnim]="activeForm === 4 ? 'open' : 'close'"
+					*ngSwitchCase="4"
+				>
+					<mat-form-field class="grid-3">
+						<mat-label> Data inclusão </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Usuário </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-5">
+						<mat-label>
+							Data exportação resultado inclusão EDI automático
+						</mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<span class="grid-divider"> </span>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Data situação </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Usuário </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Data última atualização </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Usuário </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-5">
+						<mat-label> N° DP "A" </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-5">
+						<mat-label> N° DP "B" </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Data desbloqueio embarque </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Usuário </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Data reserva DP </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<mat-form-field class="grid-2">
+						<mat-label> Código bloqueio cliente </mat-label>
+						<input matInput type="text" readonly value="Meu deus" />
+					</mat-form-field>
+
+					<div class="grid-table">
+						<table>
+							<tr>
+								<td></td>
+								<td>QTD. <br />volumes</td>
+								<td>Volume<br />(M³)</td>
+								<td>Peso bruto (kg)</td>
+							</tr>
+							<tr>
+								<td>UA Inteira</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							</tr>
+							<tr>
+								<td>Caixa Volume</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							</tr>
+							<tr>
+								<td>Fracionário</td>
+								<td>-</td>
+								<td>-</td>
+								<td>-</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+
+				<div
+					class="form-grid"
+					[@changeAnim]="activeForm === 5 ? 'open' : 'close'"
+					*ngSwitchCase="5"
+				>
+					<div class="grid-6">
+						<h1>Deseja reativar este veículo?</h1>
+					</div>
+				</div>
+			</ng-container>
+			<ng-container *ngIf="activeForm < 5">
+				<div class="button-group">
+					<button mat-button (click)="reactiveDocument()">
+						Excluir cadastro
+					</button>
+					<button mat-raised-button color="primary" (click)="saveDocument()">
+						Salvar alterações
+					</button>
+				</div>
+			</ng-container>
+
+			<ng-container *ngIf="activeForm === 5">
+				<div class="button-group">
+					<button mat-button (click)="toggleForm(1)">Cancelar</button>
+					<button
+						color="primary"
+						mat-raised-button
+						(click)="reactiveDocument(1)"
+					>
+						Sim, quero reativar.
+					</button>
+				</div>
+			</ng-container>
+		</div>
+	</div>
+</div>
