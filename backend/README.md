@@ -34,3 +34,9 @@ $ npm run start ou yarn start
 # watch mode
 $ npm run start:dev ou yarn start:dev
 ```
+
+## Executando o app FRONTEND
+
+```bash
+# development
+$ npm run start ou yarn start

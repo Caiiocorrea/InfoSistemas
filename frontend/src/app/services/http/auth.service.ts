@@ -5,7 +5,7 @@ import { catchError, retry, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { UserService } from './user.service';
 
-const API = environment.apiLogz;
+const API = environment.apiURL;
 
 @Injectable({
 	providedIn: 'root'
@@ -14,7 +14,7 @@ export class AuthService {
 	constructor(
 		private HttpClient: HttpClient,
 		private userService: UserService
-	) {}
+	) { }
 
 	getLogin(body: any) {
 		return this.HttpClient.post(`${API}login`, body).pipe(

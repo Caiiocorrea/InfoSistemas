@@ -2,10 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
-const API = environment.apiLogz;
-const APIsz = environment.apiURL;
-const APImock = environment.apiMock;
-
+const API = environment.apiURL;
 @Injectable({
 	providedIn: 'root'
 })
