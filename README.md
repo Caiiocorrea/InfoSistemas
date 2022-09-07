@@ -17,14 +17,14 @@ Teste prático realizado para vaga de backend-node para empresa InfoSistemas.
 7. Disponibilizar projeto no github
 
 ## Obrigatório
-Necessário ter mongoDB instalado para criação dos documentos automaticamente.
+1. Necessário ter mongoDB instalado para criação dos documentos automaticamente;
+2. Cadastrar usuário através do insomnia, postman ou o que preferir: { "email": "admin@admin.com.br", "senha": "12345678" }
+3. Json do insomnia no projeto, baixar e importar no mesmo.
 
 ## Instalação
 
 ```bash
 $ npm install ou yarn install
-$ Cadastrar usuário através do insomnia, postman ou o que preferir.
-$ { "email": "admin@admin.com.br", "senha": "12345678" }
 ```
 
 ## Documentação API
