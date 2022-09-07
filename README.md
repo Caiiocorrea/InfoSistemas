@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://collection.com.br/" target="blank"><img src="https://www.infosistemas.com.br/wp-content/themes/infosistemas/assets/images/logo.png" width="200" alt="Collection Logo" /></a>
+  <a href="https://www.infosistemas.com.br/" target="blank"><img src="https://www.infosistemas.com.br/wp-content/themes/infosistemas/assets/images/logo.png" width="200" alt="InfoSistemas Logo" /></a>
 </p>
 
 ## Resumo
@@ -22,22 +22,21 @@ Necessário ter mongoDB instalado para criação dos documentos automaticamente.
 ## Instalação
 
 ```bash
-$ npm install
+$ npm install ou yarn install
 ```
 
-## Executando o app
+## Executando o app BACKEND
 
 ```bash
 # development
-$ npm run start
+$ npm run start ou yarn start
 
 # watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ npm run start:dev ou yarn start:dev
 ```
 
-## Licença
+## Executando o app FRONTEND
 
-Nest is [MIT licensed](LICENSE).
+```bash
+# development
+$ npm run start ou yarn start
