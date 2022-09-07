@@ -1,38 +1,41 @@
 <p align="center">
-  <a href="https://collection.com.br/" target="blank"><img src="https://collection.com.br/wp-content/uploads/2020/08/Collection-logo-oqhcd6nyjp68u3aoyvs3eub0zly5vh98j3aafxr09s.png" width="200" alt="Collection Logo" /></a>
+  <a href="https://user-images.githubusercontent.com/49397996/188907876-43346ace-bc3f-45b8-b127-67571da118df.png" target="blank"><img src="https://user-images.githubusercontent.com/49397996/188907876-43346ace-bc3f-45b8-b127-67571da118df.png" width="100%" alt="InfoSistemas Logo" /></a>
 </p>
 
 ## Resumo
-Teste prático realizado para vaga de backend node para empresa Collection.
+Teste prático realizado para vaga de backend-node para empresa InfoSistemas.
 
 
 ## Atividade
 
-Criar uma API básica com os endpoints para CRUD de produtos.
-Os produtos devem conter as propriedades id, caminho para imagem, nome, descrição, marca (pode ser um texto), ativo e algo a mais que julgar relevante.
+1. Criar projeto backend utilizando (Node.Js)
+2. Criar crud de veículos com os seguintes atributos (id, placa, chassi, renavam, modelo, marca, ano). Obs.: Os dados podem ser salvos em arquivos
+3. Criar teste unitários utilizando Mocha (Node) para cada uma das operações (create, read, update, delete)
+4. Criar recursos rest para acesso aos dados dos veículos
+5. Criar projeto front-end utilizando a tecnologia Angular 5+ (Opcional)
+6. Criar lista de veiculos. Obs.: os dados deverão ser recuperados dos recursos rest definidos na aplicação backend (Opcional)
+7. Disponibilizar projeto no github
 
 ## Obrigatório
-Necessário ter mongoDB instalado para criação do documento automaticamente.
+1. Necessário ter mongoDB instalado para criação dos documentos automaticamente;
+2. Cadastrar usuário através do insomnia, postman ou o que preferir: { "email": "admin@admin.com.br", "senha": "12345678" }
+3. Json do insomnia no projeto, baixar e importar no mesmo.
 
 ## Instalação
 
 ```bash
-$ npm install
+$ npm install ou yarn install
 ```
 
-## Executando o app
+## Documentação API
+http://localhost:3008/api
+
+## Executando o app BACKEND
 
 ```bash
 # development
-$ npm run start
+$ npm run start ou yarn start
 
 # watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+$ npm run start:dev ou yarn start:dev
 ```
-
-## Licença
-
-Nest is [MIT licensed](LICENSE).
