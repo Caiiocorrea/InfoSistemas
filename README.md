@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://user-images.githubusercontent.com/49397996/188907876-43346ace-bc3f-45b8-b127-67571da118df.png" target="blank"><img src="https://www.infosistemas.com.br/wp-content/themes/infosistemas/assets/images/logo.png" width="200" alt="InfoSistemas Logo" /></a>
+  <a href="https://user-images.githubusercontent.com/49397996/188907876-43346ace-bc3f-45b8-b127-67571da118df.png" target="blank"><img src="https://user-images.githubusercontent.com/49397996/188907876-43346ace-bc3f-45b8-b127-67571da118df.png" width="200" alt="InfoSistemas Logo" /></a>
 </p>
 
 ## Resumo
