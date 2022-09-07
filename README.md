@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://www.infosistemas.com.br/" target="blank"><img src="https://www.infosistemas.com.br/wp-content/themes/infosistemas/assets/images/logo.png" width="200" alt="InfoSistemas Logo" /></a>
+  <a href="https://user-images.githubusercontent.com/49397996/188907876-43346ace-bc3f-45b8-b127-67571da118df.png" target="blank"><img src="https://user-images.githubusercontent.com/49397996/188907876-43346ace-bc3f-45b8-b127-67571da118df.png" width="100%" alt="InfoSistemas Logo" /></a>
 </p>
 
 ## Resumo
@@ -17,13 +17,18 @@ Teste prático realizado para vaga de backend-node para empresa InfoSistemas.
 7. Disponibilizar projeto no github
 
 ## Obrigatório
-Necessário ter mongoDB instalado para criação dos documentos automaticamente.
+1. Necessário ter mongoDB instalado para criação dos documentos automaticamente;
+2. Cadastrar usuário através do insomnia, postman ou o que preferir: { "email": "admin@admin.com.br", "senha": "12345678" }
+3. Json do insomnia no projeto, baixar e importar no mesmo.
 
 ## Instalação
 
 ```bash
 $ npm install ou yarn install
 ```
+
+## Documentação API
+http://localhost:3008/api
 
 ## Executando o app BACKEND
 

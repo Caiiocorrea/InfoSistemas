@@ -1,6 +1,7 @@
 {
-  "name": "infosistemas",
+  "name": "frontend-infosistemas",
   "version": "0.0.0",
+  "author": "Caio Santos Corrêa",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
