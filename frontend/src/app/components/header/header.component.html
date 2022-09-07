@@ -1,0 +1,18 @@
+<mat-toolbar class="page-header" [ngClass]="{ 'mouse-on-top': mouseOnTop }">
+	<div class="page-header__left">
+		<a routerLink="/home">
+			<img
+				src="assets/img/logo-veiculos.png"
+				alt="Logomarca Hausz"
+				class="page-header__logo"
+			/>
+		</a>
+		<mat-divider [vertical]="true"></mat-divider>
+		<p *ngIf="!prod">Ambiente de testes</p>
+		<mat-icon *ngIf="!prod"> developer_mode </mat-icon>
+	</div>
+
+	<div class="position">
+		<app-user-avatar></app-user-avatar>
+	</div>
+</mat-toolbar>

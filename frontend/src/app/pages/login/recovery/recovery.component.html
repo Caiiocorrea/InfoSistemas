@@ -1,0 +1,26 @@
+<div class="recovery-container">
+	<form [formGroup]="_form" [noValidate]="false" (ngSubmit)="sendForm()">
+		<mat-form-field appearance="outline" hideRequiredMarker>
+			<mat-label> Digite o email para recuperar a senha </mat-label>
+			<input matInput type="email" formControlName="email" required />
+		</mat-form-field>
+		<div class="controls-container">
+			<button
+				mat-button
+				class="btn-secondary"
+				type="button"
+				[routerLink]="['../login']"
+			>
+				Voltar
+			</button>
+			<button
+				mat-raised-button
+				class="btn-primary"
+				type="submit"
+				[disabled]="!_form.valid"
+			>
+				Enviar
+			</button>
+		</div>
+	</form>
+</div>

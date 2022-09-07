@@ -1,0 +1,18 @@
+<div class="modal-error-container">
+	<div class="close-button" title="Fechar" mat-dialog-close>
+		<mat-icon>close</mat-icon>
+	</div>
+
+	<mat-dialog-content>
+		<p class="title">{{ dialogData.Title }}</p>
+		<p class="message">{{ dialogData.Message }}</p>
+		<p class="value">{{ dialogData.Value }}</p>
+		<p class="confirm">{{ dialogData.Confirm }}</p>
+	</mat-dialog-content>
+	<mat-dialog-actions align="end">
+		<button color="primary" mat-button mat-dialog-close>Cancelar</button>
+		<button color="primary" mat-raised-button mat-dialog-close="true">
+			Confirmar
+		</button>
+	</mat-dialog-actions>
+</div>

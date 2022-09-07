@@ -1,0 +1,105 @@
+<div class="table-pagination">
+	<button
+		mat-button
+		class="btn_navigation"
+		(click)="getPageValue(currentPage - 1)"
+		[disabled]="currentPage === 1"
+	>
+		<mat-icon> navigate_before </mat-icon>
+	</button>
+	<ng-container *ngIf="!isMobile">
+		<div class="pages">
+			<button
+				mat-icon-button
+				(click)="getPageValue(currentPage - 1)"
+				*ngIf="currentPage - 1 === 1"
+			>
+				{{ currentPage - 1 }}
+			</button>
+			<button
+				mat-icon-button
+				(click)="getPageValue(currentPage - 2)"
+				*ngIf="currentPage - 2 === 2 && currentPage != 4"
+			>
+				{{ currentPage - 2 }}
+			</button>
+
+			<button
+				mat-icon-button
+				(click)="getPageValue(currentPage - 2)"
+				*ngIf="currentPage - 4 === pageCount - 4"
+			>
+				{{ currentPage - 4 }}
+			</button>
+			<button
+				mat-icon-button
+				(click)="getPageValue(currentPage - 2)"
+				*ngIf="currentPage - 3 >= pageCount - 4"
+			>
+				{{ currentPage - 3 }}
+			</button>
+
+			<button
+				mat-icon-button
+				(click)="getPageValue(currentPage - 2)"
+				*ngIf="currentPage >= 3"
+			>
+				{{ currentPage - 2 }}
+			</button>
+			<button
+				mat-icon-button
+				(click)="getPageValue(currentPage - 1)"
+				*ngIf="currentPage >= 3"
+			>
+				{{ currentPage - 1 }}
+			</button>
+
+			<button mat-icon-button class="current">
+				{{ currentPage }}
+			</button>
+
+			<button
+				mat-icon-button
+				(click)="getPageValue(currentPage + 1)"
+				*ngIf="currentPage + 1 <= pageCount"
+			>
+				{{ currentPage + 1 }}
+			</button>
+			<button
+				mat-icon-button
+				(click)="getPageValue(currentPage + 2)"
+				*ngIf="currentPage + 2 <= pageCount"
+			>
+				{{ currentPage + 2 }}
+			</button>
+
+			<button
+				mat-icon-button
+				(click)="getPageValue(currentPage + 3)"
+				*ngIf="currentPage < 3 && pageCount > 1"
+			>
+				{{ currentPage + 3 }}
+			</button>
+			<button
+				mat-icon-button
+				(click)="getPageValue(currentPage + 4)"
+				*ngIf="currentPage < 2 && pageCount > 1"
+			>
+				{{ currentPage + 4 }}
+			</button>
+		</div>
+	</ng-container>
+	<ng-container *ngIf="isMobile">
+		<div class="pages">
+			<input type="number" [value]="currentPage" />
+		</div>
+	</ng-container>
+	<button
+		mat-button
+		class="btn_navigation"
+		(click)="getPageValue(currentPage + 1)"
+		[disabled]="currentPage === pageCount"
+	>
+		<mat-icon> navigate_next </mat-icon>
+	</button>
+</div>

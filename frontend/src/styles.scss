@@ -1,0 +1,429 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Mixin
+@mixin button($width, $background, $color) {
+	width: $width;
+	border: none;
+	background: $background;
+	border-radius: 5px;
+	color: $color;
+}
+
+//Color pallete
+
+// CSS
+
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.btn-primary {
+	background: #ffc400;
+	color: #fff;
+}
+
+.btn-secondary {
+	color: #ffc400;
+	background: #fff;
+}
+
+.form-grid {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	align-items: end;
+	gap: 10px;
+
+	.grid-1,
+	.grid-2,
+	.grid-3,
+	.grid-4 {
+		height: 55px;
+	}
+
+	.grid-1 {
+		grid-column: span 1;
+	}
+	.grid-2 {
+		grid-column: span 2;
+	}
+	.grid-3 {
+		grid-column: span 3;
+	}
+	.grid-4 {
+		grid-column: span 4;
+	}
+	.grid-5 {
+		grid-column: span 5;
+	}
+	.grid-6 {
+		grid-column: span 6;
+	}
+	.grid-7 {
+		grid-column: span 7;
+	}
+	.grid-8 {
+		grid-column: span 8;
+	}
+	.grid-9 {
+		grid-column: span 9;
+	}
+	.grid-10 {
+		grid-column: span 10;
+	}
+
+	.button-group {
+		grid-column: 6;
+		display: flex;
+		align-items: end;
+		justify-content: end;
+		gap: 0px 5px;
+
+		& button {
+			height: 40px;
+			width: auto;
+		}
+	}
+}
+
+.loading {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	// background: linear-gradient(-45deg, #ee765275, #e73c7e75, #23a6d575, #23d5ab75);
+	background: rgba(0, 0, 0, 0.3);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+	height: 100vh;
+	z-index: 9999;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	gap: 20px;
+
+	p {
+		font-size: 1.5em;
+		color: #fff;
+		text-shadow: 0px 0px 5px #00000075;
+	}
+}
+
+.empty-table {
+	text-align: center;
+}
+
+* {
+	// Webkit/Blink-based browsers
+	::-webkit-scrollbar {
+		background: #eff0f6;
+		width: 10px;
+		height: 10px;
+	}
+
+	::-webkit-scrollbar-button {
+		display: none;
+	}
+
+	::-webkit-scrollbar-track {
+		border-radius: 10px;
+		background: #eff0f6;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #9b9b9b;
+		border-radius: 10px;
+
+		&:hover {
+			background: #606060;
+		}
+	}
+
+	// Gecko-based browsers
+	scrollbar-color: #9b9b9b #e1e1e1;
+	scrollbar-width: thin;
+}
+
+@media screen and (max-width: 960px) {
+	.form-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		margin-bottom: 20px;
+	}
+
+	.grid-1,
+	.grid-2,
+	.grid-3,
+	.grid-4,
+	.grid-5,
+	.grid-6,
+	.grid-7,
+	.grid-8,
+	.grid-9,
+	.grid-10 {
+		height: 55px;
+		width: 100%;
+	}
+
+	.button-group {
+		grid-column: 6;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		gap: 0px 5px;
+
+		& button {
+			height: 40px;
+			width: 100% !important;
+		}
+	}
+}
+
+//Modal
+.modal-default,
+.modal-edit,
+.modal-erroMessage,
+.modalComentarios-container,
+.modal-conferencia,
+.modal-edit-docSaida {
+	.close-button {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 10px;
+	}
+}
+
+.modal-default {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	width: 100vw;
+	height: 100vh;
+	position: relative !important;
+}
+
+.modal-edit {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	height: 65vh;
+	width: 70vw;
+	position: relative !important;
+}
+
+.modal-comentarios {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	height: 90vh;
+	width: 60vw;
+	position: relative !important;
+
+	mat-dialog-container {
+		padding: 0px !important;
+	}
+}
+
+.modal-createNF {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	height: 60vh;
+	width: 60vw;
+	position: relative !important;
+
+	mat-dialog-container {
+		padding: 0px !important;
+	}
+}
+
+.modal-erroMessage {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	width: 25vw;
+	position: relative !important;
+}
+
+.modal-conferencia {
+	max-width: 95vw !important;
+	max-height: 90vh !important;
+	width: 75vw;
+	height: 90vh;
+	position: relative !important;
+}
+
+.modal-information {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	width: 60vw;
+	height: 45vh;
+	position: relative !important;
+
+	mat-dialog-container {
+		padding: 0px !important;
+	}
+}
+
+.modal-relacionados {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	width: 60vw;
+	height: 45vh;
+	position: relative !important;
+
+	mat-dialog-container {
+		padding: 0px !important;
+	}
+}
+
+.modal-ShippingCompany {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	width: 35vw;
+	height: 35vh;
+	position: relative !important;
+
+	mat-dialog-container {
+		padding: 0px !important;
+	}
+}
+
+.modal-mapa {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	width: 35vw;
+	height: 90vh;
+	position: relative !important;
+}
+
+.modal-edit-docSaida {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	height: 70vh;
+	width: 70vw;
+	position: relative !important;
+}
+
+.modal-add-rota {
+	max-width: 90vw !important;
+	max-height: 90vh !important;
+	width: 50vw;
+	height: 60vh;
+	position: relative !important;
+
+	mat-dialog-container {
+		padding: 0px !important;
+	}
+}
+
+.modal-details-rota {
+	max-width: 95vw !important;
+	max-height: 90vh !important;
+	width: 90vw;
+	height: 90vh;
+	position: relative !important;
+
+	mat-dialog-container {
+		padding: 0px !important;
+	}
+}
+
+@media screen and (max-width: 960px) {
+	* {
+		// Webkit/Blink-based browsers
+		::-webkit-scrollbar {
+			background: #eff0f6;
+			width: 3px !important;
+			height: 10px !important;
+		}
+	}
+
+	.modal-edit,
+	.modal-conferencia,
+	.modal-createNF,
+	.modal-comentarios,
+	.modal-information,
+	.modal-relacionados,
+	.modal-ShippingCompany,
+	.modal-mapa,
+	.modal-edit,
+	.modal-edit-docSaida,
+	.modal-add-rota,
+	.modal-details-rota {
+		width: 100vw;
+		height: 100vh;
+	}
+	.modal-erroMessage {
+		width: 90vw;
+	}
+}
+
+//Material override
+button[color='primary'][mat-button] {
+	min-width: 50px;
+	padding: 0 10px;
+}
+
+button[color='primary'][mat-raised-button] {
+	background-color: #ffc400 !important;
+}
+
+button[color='primary'][mat-stroked-button] {
+	color: #ffc400 !important;
+}
+
+button:disabled,
+button[color='primary'][mat-button]:disabled,
+button[color='primary'][mat-raised-button]:disabled,
+button[color='primary'][mat-stroked-button]:disabled {
+	background-color: #c9c9c9 !important;
+	color: #606060 !important;
+	cursor: not-allowed;
+}
+
+button[color='primary'][mat-button] {
+	color: #ffc400 !important;
+}
+
+.no-shadow {
+	box-shadow: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	.mat-expansion-panel-header,
+	.mat-expansion-panel-body {
+		padding-left: 2px;
+		padding-right: 2px;
+	}
+}
+
+.mat-drawer-container {
+	background-color: #fff !important;
+	color: rgba(0, 0, 0, 0.87);
+}
+
+.mat-list-item-content {
+	height: 40px !important;
+	outline: none;
+}
+
+mat-card.crm-arquiteto.cdk-drag-preview {
+	opacity: 0.7 !important;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}

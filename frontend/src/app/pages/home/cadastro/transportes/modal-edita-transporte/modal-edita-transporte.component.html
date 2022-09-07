@@ -1,0 +1,97 @@
+<div class="modalEdita-container">
+	<div class="close-button" title="Fechar" mat-dialog-close>
+		<mat-icon>close</mat-icon>
+	</div>
+	<div class="container-controls">
+		<div class="side-nav">
+			<button mat-button (click)="toggleForm(1)" [ngClass]="{ active: activeForm === 1 }">
+				Dados do veículos
+			</button>
+			<button mat-button (click)="toggleForm(2)" [ngClass]="{ active: activeForm === 2 }">
+				Documentação
+			</button>
+			<button mat-button (click)="toggleForm(3)" class="inactive-alert" [ngClass]="{ active: activeForm === 3 }"
+				*ngIf="dialogData.active === 'false'">
+				Veículo inativo
+				<mat-icon> warning </mat-icon>
+			</button>
+		</div>
+		<div class="form-container">
+			<ng-container [ngSwitch]="activeForm">
+				<form class="form-grid" [formGroup]="_formVehicle" [@changeAnim]="activeForm === 1 ? 'open' : 'close'"
+					*ngSwitchCase="1">
+					<mat-form-field class="grid-3">
+						<mat-label> Modelo </mat-label>
+						<input matInput type="text" formControlName="modelo" required />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Marca </mat-label>
+						<input matInput type="text" formControlName="marca" required />
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Placa </mat-label>
+						<input matInput type="text" formControlName="placa" required />
+						<mat-error *ngIf="!_formVehicle.hasError('required')">
+							Preencha a placa do veículo
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Chassi </mat-label>
+						<input matInput type="text" formControlName="chassi" required />
+						<mat-error *ngIf="!_formVehicle.hasError('required')">
+							Informe o tipo do veículo
+						</mat-error>
+					</mat-form-field>
+
+					<mat-form-field class="grid-3">
+						<mat-label> Ano </mat-label>
+						<input matInput type="text" formControlName="ano" required />
+						<mat-error *ngIf="!_formVehicle.hasError('required')">
+							Informe a carroceria do veículo.
+						</mat-error>
+					</mat-form-field>
+				</form>
+
+				<form class="form-grid" [formGroup]="_formDocuments" [@changeAnim]="activeForm === 2 ? 'open' : 'close'"
+					*ngSwitchCase="2">
+					<mat-form-field class="grid-3">
+						<mat-label> Renavam </mat-label>
+						<input matInput type="text" formControlName="renavam" required />
+						<mat-error *ngIf="!_formVehicle.hasError('required')">
+							Preencha o renavam
+						</mat-error>
+					</mat-form-field>
+					<!-- <mat-form-field class="grid-3">
+						<mat-label> Documento </mat-label>
+						<input matInput type="text" formControlName="modelo" required>
+					</mat-form-field> -->
+				</form>
+				<div class="form-grid" [@changeAnim]="activeForm === 3 ? 'open' : 'close'" *ngSwitchCase="3">
+					<div class="grid-6">
+						<h1>Deseja reativar este veículo?</h1>
+					</div>
+				</div>
+			</ng-container>
+			<ng-container *ngIf="activeForm < 3">
+				<div class="button-group">
+					<button mat-button (click)="deleteVehicle()">Excluir cadastro</button>
+					<button mat-raised-button color="primary" (click)="saveEdit()">
+						Salvar alterações
+					</button>
+				</div>
+			</ng-container>
+
+			<ng-container *ngIf="activeForm === 3">
+				<div class="button-group">
+					<button mat-button (click)="toggleForm(1)">Cancelar</button>
+					<button color="primary" mat-raised-button (click)="deleteVehicle(1)">
+						Sim, quero reativar.
+					</button>
+				</div>
+			</ng-container>
+		</div>
+	</div>
+</div>
