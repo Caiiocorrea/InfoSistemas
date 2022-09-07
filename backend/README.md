@@ -1,23 +1,18 @@
 <p align="center">
-  <a href="https://collection.com.br/" target="blank"><img src="https://www.infosistemas.com.br/wp-content/themes/infosistemas/assets/images/logo.png" width="200" alt="Collection Logo" /></a>
+  <a href="https://collection.com.br/" target="blank"><img src="https://collection.com.br/wp-content/uploads/2020/08/Collection-logo-oqhcd6nyjp68u3aoyvs3eub0zly5vh98j3aafxr09s.png" width="200" alt="Collection Logo" /></a>
 </p>
 
 ## Resumo
-Teste prático realizado para vaga de backend-node para empresa InfoSistemas.
+Teste prático realizado para vaga de backend node para empresa Collection.
 
 
 ## Atividade
 
-1. Criar projeto backend utilizando (Node.Js)
-2. Criar crud de veículos com os seguintes atributos (id, placa, chassi, renavam, modelo, marca, ano). Obs.: Os dados podem ser salvos em arquivos
-3. Criar teste unitários utilizando Mocha (Node) para cada uma das operações (create, read, update, delete)
-4. Criar recursos rest para acesso aos dados dos veículos
-5. Criar projeto front-end utilizando a tecnologia Angular 5+ (Opcional)
-6. Criar lista de veiculos. Obs.: os dados deverão ser recuperados dos recursos rest definidos na aplicação backend (Opcional)
-7. Disponibilizar projeto no github
+Criar uma API básica com os endpoints para CRUD de produtos.
+Os produtos devem conter as propriedades id, caminho para imagem, nome, descrição, marca (pode ser um texto), ativo e algo a mais que julgar relevante.
 
 ## Obrigatório
-Necessário ter mongoDB instalado para criação dos documentos automaticamente.
+Necessário ter mongoDB instalado para criação do documento automaticamente.
 
 ## Instalação
 
