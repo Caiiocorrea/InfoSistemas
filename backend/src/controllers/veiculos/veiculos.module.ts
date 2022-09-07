@@ -8,8 +8,8 @@ import { Module } from '@nestjs/common';
 @Module({
   imports: [
     JwtModule.register({
-      privateKey: 'SXJHkn7mFWsMS',
-      signOptions: { expiresIn: '1h' },
+      privateKey: process.env.JWT_SECRET_KEY,
+      signOptions: { expiresIn: process.env.JWT_EXPIRES_IN },
     }),
     MongooseModule.forFeature([{
       name: 'Veiculo', schema: VeiculoSchema,

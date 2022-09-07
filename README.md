@@ -23,7 +23,11 @@ Necessário ter mongoDB instalado para criação dos documentos automaticamente.
 
 ```bash
 $ npm install ou yarn install
+$ Cadastrar usuário através do insomnia, postman ou o que preferir: { "email": "admin@admin.com.br", "senha": "12345678" }
 ```
+
+## Documentação API
+http://localhost:3008/api
 
 ## Executando o app BACKEND
 
